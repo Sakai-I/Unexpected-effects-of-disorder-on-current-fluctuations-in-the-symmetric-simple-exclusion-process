@@ -166,10 +166,6 @@ int main(int argc,char *argv[]){
         }
 
         if(i%ds==0){
-            printf("\b");
-            printf("=>");
-            fflush(stdout);
-
             snprintf(file,100,"%s/current/SEP_current%d_%d.txt",argv[1],a,N);
             fp=fopen(file,"w");
             for(j=0;j<M;++j){
