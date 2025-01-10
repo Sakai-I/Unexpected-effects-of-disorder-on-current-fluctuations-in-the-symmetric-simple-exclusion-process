@@ -117,7 +117,7 @@ int main(int argc,char *argv[]){
     int ds=S/100;
     int x[N];
     double t[N];
-    double tsam,tmin,dt=tmax/M;
+    double tsum,tmin,dt=tmax/M;
     double tau[L],Q2[M];
     double X;
 
@@ -146,19 +146,19 @@ int main(int argc,char *argv[]){
             t[j]=-tau[x[j]]*log(X);
         }
 
-        tsam=0.;
-        while(tsam<1E3){//initial condition
-            dynamics(x,t,tau,&tsam,&count);
+        tsum=0.;
+        while(tsum<1E3){//initial condition
+            dynamics(x,t,tau,&tsum,&count);
         }
 
         count=0.;
 
-        tsam=0.;
+        tsum=0.;
         int l=0;
-        while(tsam<tmax){
-            dynamics(x,t,tau,&tsam,&count);
+        while(tsum<tmax){
+            dynamics(x,t,tau,&tsum,&count);
 
-            while(tsam>(l+1)*dt){
+            while(tsum>(l+1)*dt){
                 Q2[l]+=pow(count,2);
                 ++l;
                 if((l+1)*dt>tmax) break;
